@@ -1,0 +1,69 @@
+{{#> modal id="registrationModal" title="Registrar el consumo mensual" footer=true open=formOpen}}
+  {{#*inline "footer"}}
+    <div class="modal-actions">
+      <button type="button" class="btn-secondary" data-close-dialog>Cancelar</button>
+      <button type="submit" form="registrationForm" class="btn-primary">
+        Calcular predicción
+        <span aria-hidden="true">→</span>
+      </button>
+    </div>
+  {{/inline}}
+
+  <form id="registrationForm" action="/predict" method="post" class="prediction-form">
+    {{#if error}}
+      <div class="error-message modal-error" role="alert">
+        <span class="error-icon" aria-hidden="true">!</span>
+        <p>{{error}}</p>
+      </div>
+    {{/if}}
+
+    <p id="form-help" class="form-hint modal-hint">
+      Ingresa exactamente 12 meses consecutivos, del más antiguo al más
+      reciente. Usa el consumo indicado en tu factura, en kWh.
+    </p>
+
+    <div class="register-grid">
+      {{#each registers}}
+        <fieldset class="register-card">
+          <legend><span class="register-number">{{number}}</span> Registro mensual</legend>
+          <div class="form-field">
+            <label for="register-{{number}}-date" class="form-label">Mes</label>
+            <input
+              id="register-{{number}}-date"
+              type="month"
+              name="dates[]"
+              value="{{date}}"
+              required
+              aria-describedby="form-help"
+              class="form-input"
+            >
+          </div>
+          <div class="form-field">
+            <label for="register-{{number}}-consumption" class="form-label">Consumo (kWh)</label>
+            <input
+              id="register-{{number}}-consumption"
+              type="number"
+              name="consumption[]"
+              value="{{consumption}}"
+              min="0"
+              step="any"
+              inputmode="decimal"
+              required
+              aria-describedby="form-help"
+              class="form-input"
+            >
+          </div>
+        </fieldset>
+      {{/each}}
+    </div>
+
+    <div class="form-field method-field modal-method-field">
+      <label for="mode" class="form-label">Método de análisis</label>
+      <select id="mode" name="mode" class="form-input" required>
+        {{#each modes}}
+          <option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>
+        {{/each}}
+      </select>
+    </div>
+  </form>
+{{/modal}}

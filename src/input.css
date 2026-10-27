@@ -1,0 +1,312 @@
+@import "tailwindcss";
+
+@source "../views/**/*.hbs";
+
+@layer base {
+  body {
+    @apply m-0 font-sans text-slate-900 antialiased;
+  }
+
+  button,
+  input,
+  select {
+    font: inherit;
+  }
+}
+
+@layer components {
+  .page-shell {
+    @apply flex min-h-screen flex-col bg-slate-50;
+  }
+
+  .site-header {
+    @apply flex items-center justify-between border-b border-slate-200 bg-white px-5 py-4;
+  }
+
+  .brand {
+    @apply flex items-center gap-3 font-semibold text-slate-900 no-underline;
+  }
+
+  .brand-mark {
+    @apply rounded-lg bg-blue-700 px-2 py-1 text-xs font-bold text-white;
+  }
+
+  .header-note {
+    @apply text-sm text-slate-500;
+  }
+
+  .page-main {
+    @apply mx-auto w-full max-w-6xl flex-1 px-5 py-10;
+  }
+
+  .page-intro {
+    @apply mb-8 max-w-2xl;
+  }
+
+  .eyebrow {
+    @apply mb-2 text-xs font-bold uppercase tracking-widest text-blue-700;
+  }
+
+  .page-intro h1 {
+    @apply mb-3 text-3xl font-bold tracking-tight text-slate-950;
+  }
+
+  .intro-copy {
+    @apply m-0 max-w-xl text-base leading-7 text-slate-600;
+  }
+
+  .intro-actions {
+    @apply mt-5 flex items-center gap-4;
+  }
+
+  .intro-note {
+    @apply text-xs text-slate-500;
+  }
+
+  .error-message {
+    @apply mb-6 flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-900;
+  }
+
+  .error-message p {
+    @apply m-0 leading-6;
+  }
+
+  .error-icon {
+    @apply flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-red-100 font-bold text-red-700;
+  }
+
+  .result-panel,
+  .form-card {
+    @apply mb-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm;
+  }
+
+  .result-heading,
+  .form-heading {
+    @apply flex items-start justify-between gap-5;
+  }
+
+  .result-heading h2,
+  .form-heading h2 {
+    @apply mb-2 text-xl font-bold text-slate-950;
+  }
+
+  .result-summary,
+  .form-hint {
+    @apply m-0 max-w-3xl text-sm leading-6 text-slate-600;
+  }
+
+  .trend-badge {
+    @apply inline-flex shrink-0 rounded-full bg-blue-50 px-3 py-1.5 text-xs font-semibold text-blue-800;
+  }
+
+  .metrics-grid {
+    @apply mt-5 grid gap-3;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  }
+
+  .metric-card {
+    @apply rounded-xl bg-slate-50 p-4;
+  }
+
+  .metric-card dt {
+    @apply mb-2 text-xs font-medium text-slate-500;
+  }
+
+  .metric-card dd {
+    @apply m-0 text-lg font-bold text-slate-950;
+  }
+
+  .variation-section {
+    @apply mt-6;
+  }
+
+  .variation-section h3 {
+    @apply mb-3 text-sm font-semibold text-slate-800;
+  }
+
+  .table-wrap {
+    @apply overflow-x-auto rounded-lg border border-slate-200;
+  }
+
+  .variation-table {
+    @apply w-full border-collapse text-left text-sm;
+  }
+
+  .variation-table thead {
+    @apply bg-slate-50 text-xs uppercase tracking-wide text-slate-500;
+  }
+
+  .variation-table th,
+  .variation-table td {
+    @apply border-b border-slate-100 px-4 py-2.5;
+  }
+
+  .variation-table tbody tr:last-child th,
+  .variation-table tbody tr:last-child td {
+    @apply border-b-0;
+  }
+
+  .variation-table tbody th {
+    @apply font-medium text-slate-700;
+  }
+
+  .variation-table tbody td {
+    @apply font-semibold tabular-nums text-slate-900;
+  }
+
+  .result-note {
+    @apply mb-0 mt-4 text-xs leading-5 text-slate-500;
+  }
+
+  .form-card {
+    @apply mb-0 p-5;
+  }
+
+  .form-heading {
+    @apply mb-6;
+  }
+
+  .register-count {
+    @apply shrink-0 rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600;
+  }
+
+  .modal-hint {
+    @apply mb-5;
+  }
+
+  .modal-error {
+    @apply mb-4;
+  }
+
+  .register-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .register-card {
+    @apply m-0 min-w-0 rounded-xl border border-slate-200 bg-white p-3;
+  }
+
+  .register-card legend {
+    @apply px-1 text-xs font-medium text-slate-500;
+  }
+
+  .register-number {
+    @apply mr-1 font-bold text-blue-700;
+  }
+
+  .form-field {
+    @apply flex min-w-0 flex-col gap-1.5;
+  }
+
+  .form-field + .form-field {
+    @apply mt-3;
+  }
+
+  .form-label {
+    @apply text-xs font-semibold text-slate-700;
+  }
+
+  .form-input {
+    @apply w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition;
+  }
+
+  .form-input:focus {
+    @apply border-blue-600 ring-2 ring-blue-600/20;
+  }
+
+  .form-actions {
+    @apply mt-6 flex items-end justify-between gap-4 border-t border-slate-100 pt-5;
+  }
+
+  .modal-method-field {
+    @apply mt-5 max-w-sm;
+  }
+
+  .modal-actions {
+    @apply flex items-center justify-between gap-3;
+  }
+
+  .method-field {
+    @apply w-full max-w-sm;
+  }
+
+  .btn-primary {
+    @apply inline-flex shrink-0 cursor-pointer items-center justify-center gap-3 rounded-lg bg-blue-700 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700;
+  }
+
+  .btn-secondary {
+    @apply inline-flex cursor-pointer items-center justify-center rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-500;
+  }
+
+  .btn-close {
+    @apply cursor-pointer border-0 bg-transparent text-2xl leading-none text-slate-500 hover:bg-slate-100 hover:text-slate-900;
+  }
+
+  .privacy-note {
+    @apply mb-0 mt-4 text-center text-xs leading-5 text-slate-500;
+  }
+
+  .site-footer {
+    @apply mx-auto flex w-full max-w-6xl flex-wrap justify-between gap-2 px-5 py-6 text-xs text-slate-500;
+  }
+}
+
+@media (max-width: 900px) {
+  .register-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .site-header {
+    @apply px-4;
+  }
+
+  .header-note {
+    @apply text-xs;
+  }
+
+  .page-main {
+    @apply px-4 py-8;
+  }
+
+  .page-intro h1 {
+    @apply text-2xl;
+  }
+
+  .result-panel,
+  .form-card {
+    @apply p-4;
+  }
+
+  .result-heading,
+  .form-heading {
+    @apply flex-col gap-3;
+  }
+
+  .register-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .form-actions {
+    @apply flex-col items-stretch;
+  }
+
+  .intro-actions {
+    @apply flex-col items-start gap-2;
+  }
+
+  .modal-actions {
+    @apply justify-end;
+  }
+
+  .method-field {
+    @apply max-w-none;
+  }
+
+  .site-footer {
+    @apply px-4;
+  }
+}

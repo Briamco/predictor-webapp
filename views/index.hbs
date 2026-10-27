@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f8fafc">
+    <meta name="description" content="Analiza el historial mensual de consumo eléctrico de tu hogar y genera una estimación con cuatro métodos.">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/css/output.css">
+  </head>
+  <body class="page-shell">
+    <header class="site-header">
+      <a href="/" class="brand" aria-label="Predictor de Consumo Eléctrico, inicio">
+        <span class="brand-mark" aria-hidden="true">kWh</span>
+        <span>Consumo del Hogar</span>
+      </a>
+      <span class="header-note">Análisis mensual de energía</span>
+    </header>
+
+    <main class="page-main">
+      <section class="page-intro" aria-labelledby="page-title">
+        <p class="eyebrow">PREDICCIÓN DE CONSUMO ELÉCTRICO</p>
+        <h1 id="page-title">Entiende el consumo de tu hogar.</h1>
+        <p class="intro-copy">
+          Registra 12 meses de consumo en kWh, elige un método y revisa el
+          resultado calculado a partir de tus datos.
+        </p>
+        <div class="intro-actions">
+          <button id="openRegistrationModal" type="button" class="btn-primary">
+            Registrar 12 consumos
+            <span aria-hidden="true">→</span>
+          </button>
+          <span class="intro-note">Fechas consecutivas · kWh por mes</span>
+        </div>
+      </section>
+
+      {{#if result}}
+        <section class="result-panel" aria-labelledby="result-title" aria-live="polite">
+          <div class="result-heading">
+            <div>
+              <p class="eyebrow">RESULTADO DEL ANÁLISIS</p>
+              <h2 id="result-title">{{result.title}}</h2>
+              <p class="result-summary">{{result.summary}}</p>
+            </div>
+            <span class="trend-badge trend-{{result.tendency}}">{{result.tendencyLabel}}</span>
+          </div>
+
+          <dl class="metrics-grid">
+            {{#each result.metrics}}
+              <div class="metric-card">
+                <dt>{{label}}</dt>
+                <dd>{{value}}</dd>
+              </div>
+            {{/each}}
+          </dl>
+
+          {{#if result.variations}}
+            <div class="variation-section">
+              <h3>Variación de cada mes</h3>
+              <div class="table-wrap">
+                <table class="variation-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Periodo</th>
+                      <th scope="col">Variación</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#each result.variations}}
+                      <tr>
+                        <th scope="row">{{month}} · {{date}}</th>
+                        <td>{{value}}</td>
+                      </tr>
+                    {{/each}}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          {{/if}}
+
+          {{#if result.note}}
+            <p class="result-note">{{result.note}}</p>
+          {{/if}}
+        </section>
+      {{/if}}
+
+      <p class="privacy-note">
+        Tus cálculos se realizan en el servidor con los valores que envíes en
+        este formulario.
+      </p>
+    </main>
+
+    <footer class="site-footer">
+      <span>Predictor de Consumo Eléctrico del Hogar</span>
+      <span>Los resultados son estimaciones basadas en el historial ingresado.</span>
+    </footer>
+
+    {{> registrationForm}}
+
+    <script>
+      (() => {
+        const dialog = document.getElementById("registrationModal");
+        const openButton = document.getElementById("openRegistrationModal");
+
+        if (!dialog) return;
+
+        openButton?.addEventListener("click", () => dialog.showModal());
+        dialog.querySelectorAll("[data-close-dialog]").forEach((button) => {
+          button.addEventListener("click", () => dialog.close());
+        });
+
+        if (dialog.dataset.open === "true") dialog.showModal();
+      })();
+    </script>
+  </body>
+</html>
